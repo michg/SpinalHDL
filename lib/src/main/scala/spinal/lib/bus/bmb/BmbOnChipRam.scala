@@ -1,7 +1,7 @@
 package spinal.lib.bus.bmb
 
 import spinal.core._
-import spinal.lib.misc.HexTools
+import spinal.lib.misc.{HexTools,BinTools}
 import spinal.lib.slave
 
 
@@ -40,7 +40,8 @@ case class BmbOnChipRam(p: BmbParameter,
 
   if(hexInit != null){
     assert(hexOffset != null)
-    HexTools.initRam(ram, hexInit, hexOffset)
+    val ext = hexInit.split("\\.").last
+    if(ext == "bin") BinTools.initRam(ram, hexInit) else HexTools.initRam(ram, hexInit, hexOffset)
   }
 }
 
@@ -100,7 +101,8 @@ case class BmbOnChipRamMultiPort( portsParameter: Seq[BmbParameter],
 
   if(hexInit != null){
     assert(hexOffset != null)
-    HexTools.initRam(ram, hexInit, hexOffset)
+    val ext = hexInit.split("\\.").last
+    if(ext == "bin") BinTools.initRam(ram, hexInit) else HexTools.initRam(ram, hexInit, hexOffset)
   }
 }
 
