@@ -11,7 +11,7 @@ case class MacEthParameter(phy: PhyParameter,
                            txDataWidth : Int,
                            rxBufferByteSize : Int,
                            txBufferByteSize : Int){
-  val txAvailabilityWidth = log2Up((txBufferByteSize * 8 / 32) + 1)
+  val txAvailabilityWidth = log2Up((txBufferByteSize * 8 / txDataWidth) + 1)
 }
 
 case class MacEthCtrl(p : MacEthParameter) extends Bundle{
